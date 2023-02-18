@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% block title %} Register {% endblock %} {% block
+content %} {% for message in get_flashed_messages() %}
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  {{ message }}
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+
+{% endfor %}
+
+<h1>Register Account</h1>
+
+<div class="shadow p-3 mb-5 bg-body rounded">
+  <form method="POST">
+    {{ form.hidden_tag() }} {{ form.name.label( class="form-label" ) }} {{
+    form.name( class="form-control" ) }}
+    <br />
+    {{ form.surname.label( class="form-label" ) }} {{ form.surname(
+    class="form-control" ) }}
+    <br />
+    {{ form.email.label( class="form-label" ) }} {{ form.email(
+    class="form-control" ) }}
+    <br />
+    {{ form.password1.label( class="form-label" ) }} {{ form.password1(
+    class="form-control" ) }}
+    <br />
+    {{ form.password2.label( class="form-label" ) }} {{ form.password2(
+    class="form-control" ) }}
+
+    <br />
+
+    {{ form.submit( class="btn btn-secondary") }}
+  </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+User class
+username
+password
+first name
+last name
+email
+
+relationship("Saved_Job")
+
+Saved Jobs
+title @ company
+description
+link
+closing date
+
+
+
+
+FR (user.id)
+
+
+
