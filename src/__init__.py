@@ -1,7 +1,9 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-# from database.create_db import create_database
+from flask_login import LoginManager
 
+
+# from database.create_db import create_database
 db = SQLAlchemy()
 DB_NAME = "future_career.db"
 
@@ -33,6 +35,14 @@ def create_app():
     
     with app.app_context():
         db.create_all()
+        
+    login_manger = LoginManager()
+    login_manger.login_view = 'auth.login'
+    login_manger.init_app(app)
+
+    @login_manger.user_loader
+    def load_user(id):
+        return User.query.get(int(id))
     
     
     return app

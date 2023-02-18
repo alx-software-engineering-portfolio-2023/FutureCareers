@@ -57,7 +57,7 @@ def login():
             if check_password_hash(user.password, form.password.data):
                 login_user(user)
                 flash("Logged In Successfully")
-                return redirect(url_for('views.dashboard'))
+                return redirect(url_for('member.dashboard'))
             else:
                 flash("Incorrect password! - Try Again")
         else:
@@ -65,3 +65,10 @@ def login():
 
     return render_template('auth/login.html', form=form, user=current_user)
 
+
+@auth.route('/logout')
+@login_required
+def logout():
+    """Logs out the user."""
+    logout_user()
+    return redirect(url_for('auth.login'))
