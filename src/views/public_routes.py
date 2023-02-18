@@ -8,3 +8,8 @@ public = Blueprint("public", __name__)
 def home():
 
     return "Public Registered"
+
+@public.route('/search')
+def search():
+    
+    return "Search"

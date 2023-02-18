@@ -14,8 +14,6 @@ link
 closing date
 
 
-
-
 FR (user.id)
 
 
