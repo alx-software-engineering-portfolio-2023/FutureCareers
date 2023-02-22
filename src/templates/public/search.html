@@ -1,0 +1,21 @@
+{% extends 'base_search.html' %}
+
+{% block content %}
+
+<!--
+<form>
+    <input type="text" placeholder=" Search...." name="search">
+    <button type="submit">Submit</button>
+</form>
+-->
+<h3>Obtained these results...</h3>
+
+
+{% for result in results %}
+{% for entry in result %}
+{{ entry }}<br />
+{% endfor %}
+<br /><br /><br />
+{% endfor %}
+
+{% endblock %}

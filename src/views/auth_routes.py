@@ -48,16 +48,23 @@ def register():
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     """Logs In the User."""
+    
     form = LoginForm()
 
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
+        
         if user:
             # Check the password hash if it matches the typed password
             if check_password_hash(user.password, form.password.data):
                 login_user(user)
-                flash("Logged In Successfully")
-                return redirect(url_for('member.dashboard'))
+                
+                if user.id == 1:
+                    flash("Hello Admin")
+                    return redirect(url_for('admin.dashboard'))
+                else:
+                    flash("Signed In Successfully")
+                    return redirect(url_for('member.dashboard'))
             else:
                 flash("Incorrect password! - Try Again")
         else:
@@ -70,5 +77,8 @@ def login():
 @login_required
 def logout():
     """Logs out the user."""
+    
     logout_user()
+    flash("You have been Logged out")
     return redirect(url_for('auth.login'))
+

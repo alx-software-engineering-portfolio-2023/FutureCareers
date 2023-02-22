@@ -25,3 +25,10 @@ class LoginForm(FlaskForm):
     password = PasswordField("Password", validators=[DataRequired()])
     submit = SubmitField("Submit")
 
+
+
+class SearchForm(FlaskForm):
+    """Form requested when searching."""
+    
+    search = StringField("Search", validators=[DataRequired()])
+    submit = SubmitField("Submit")
