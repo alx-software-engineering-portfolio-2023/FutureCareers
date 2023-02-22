@@ -30,7 +30,7 @@ def profile(id):
         try:
             db.session.commit()
             flash("User Updated Succesfully")
-
+            
             return render_template('member/profile.html', form=form, user=user_to_update, id=id)
         
         except:
@@ -38,7 +38,8 @@ def profile(id):
             
             return render_template('member/profile.html', form=form, user=user_to_update, id=id)
     
-    else: 
+    else:
+        
         return render_template("member/profile.html", form=form, user=user_to_update, id=id)
 
 

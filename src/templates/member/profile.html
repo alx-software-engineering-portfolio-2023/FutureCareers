@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}{% block titlte %}Profile{% endblock %}
 
 {% block content %}
 
@@ -7,60 +7,33 @@
 <h2>Your Profile</h2>
 
 <div class="shadow p-3 mb-5 bg-body rounded">
-    <form action="profile/{{ user.id }}" method="POST">
-        {{ form.hidden_tag() }}
+    <form action="/profile/{{ user.id }}" method="POST">
+        {{ form.hidden_tag() }} {{ form.name.label( class="form-label") }} {{
+        form.name( class="form-control", value=user.name) }}
+        <br />
+        {{ form.surname.label( class="form-label" ) }} {{ form.surname(
+        class="form-control", value=user.surname ) }}
+        <br />
+        {{ form.email.label( class="form-label" ) }} {{ form.email(
+        class="form-control", value=user.email ) }}
+        <br />
+        
+        {{ form.password1.label( class="form-label" ) }} {{ form.password1(
+        class="form-control", value=user.password ) }}
+        <br />
+        {{ form.password2.label( class="form-label" ) }} {{ form.password2(
+        class="form-control", value=user.password2 ) }}
 
-        {{ form.name.label(
-            class="form-label"
-        ) }}
+        <br />
 
-        {{ form.name(
-            class="form-control", value=user.name
-        ) }}
-        <br/>
-        {{ form.surname.label(
-            class="form-label"
-        ) }}
-        
-        {{ form.surname(
-            class="form-control", value=user.surname
-        ) }}
-        <br/>
-        {{ form.email.label(
-            class="form-label"
-        ) }}
-        
-        {{ form.email(
-            class="form-control", value=user.email
-        ) }}
-        <br/>
-        {{ form.name.password(
-            class="form-label"
-        ) }}
-        
-        {{ form.password(
-            class="form-control", value=user.password1
-        ) }}
-        <br/>
-        {{ form.password2.label(
-            class="form-label"
-        ) }}
-        
-        {{ form.password2(
-            class="form-control", value=user.password2
-        ) }}
-        <br/>
-        {{ form.submit(
-            class="btn btn-secondary btn-sm"
-        )}}
-
+        {{ form.submit( class="btn btn-secondary") }}
     </form>
 </div>
 
 {% else %}
 
-<h2>Request Denied...!</h2>
-<p>Sorry, You don't have permission to access this page.</p>
+<h2>Access Denied...!</h2>
+<p>Sorry, You dont have permission to modify this page</p>
 
 {% endif %}
 
