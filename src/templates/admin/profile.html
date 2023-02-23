@@ -26,6 +26,9 @@ content %}
         <br />
 
         {{ form.submit( class="btn btn-secondary") }}
+
+        <a href="{{ url_for('member.delete', id=id) }}" class="btn btn-danger btn-sm">Delete</a>
+        
     </form>
 </div>
 
