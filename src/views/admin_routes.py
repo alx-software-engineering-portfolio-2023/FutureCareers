@@ -6,46 +6,41 @@ from forms.webforms import RegistrationForm
 
 admin = Blueprint("admin", __name__)
 
-
 @admin.route('/dashboard')
 @login_required
 def dashboard():
     our_users = User.query.all()
+    
     return render_template('admin/dashboard.html', user=current_user, our_users=our_users)
+    
+        
 
 
-@admin.route('/profile/<int:id>')
+@admin.route('/profile/<int:id>', methods=['GET', 'POST'])
 @login_required
 def profile(id):
     form = RegistrationForm()
     user_to_update = User.query.get_or_404(id)
 
-    if current_user.id == 1:
-        if request.method == 'POST':
-            user_to_update.name = request.form['name']
-            user_to_update.surname = request.form['surname']
-            user_to_update.email = request.form['email']
-            user_to_update.password1 = '********'
-            user_to_update.password2 = '********'
+    if request.method == 'POST':
+        user_to_update.name = request.form['name']
+        user_to_update.surname = request.form['surname']
+        user_to_update.email = request.form['email']
 
-            try:
-                db.session.commit()
-                flash("User Updated Succesfully")
+        try:
+            db.session.commit()
+            flash("User Updated Succesfully")
 
-                return render_template('admin/dashboard.html', form=form, user=user_to_update, id=id)
+            return render_template('admin/dashboard.html', form=form, user=user_to_update, id=id)
 
-            except:
-                flash("Encountered an Error!...Try Again!")
+        except:
+            flash("Encountered an Error!...Try Again!")
 
-                return render_template('admin/profile.html', form=form, user=user_to_update, id=id)
-
-        else:
-
-            return render_template("admin/profile.html", form=form, user=user_to_update, id=id)
+            return render_template('admin/profile.html', form=form, user=user_to_update, id=id)
 
     else:
-        flash("Unauthorized Access...Never Attempt This Again!!!")
-        return redirect(url_for('auth.logout'))
+
+        return render_template("admin/profile.html", form=form, user=user_to_update, id=id)
 
 
 @admin.route('/delete/<int:id>')
@@ -64,11 +59,11 @@ def delete(id):
 
         except:
             flash("Whoops! Encountered a problem deleting the user")
-            return render_template('member/profile.html', form=form)
+            return render_template('admin/profile.html', form=form)
 
     else:
         flash("Requires authorization!! You are not the Admin of This Profile..")
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('admin.dashboard'))
 
 
 @admin.route('/stats')

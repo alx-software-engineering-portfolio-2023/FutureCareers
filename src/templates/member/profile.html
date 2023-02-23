@@ -16,20 +16,13 @@
         <br />
         {{ form.email.label( class="form-label" ) }} {{ form.email(
         class="form-control", value=user.email ) }}
-        <br />
-        
-        {{ form.password1.label( class="form-label" ) }} {{ form.password1(
-        class="form-control", value=user.password ) }}
-        <br />
-        {{ form.password2.label( class="form-label" ) }} {{ form.password2(
-        class="form-control", value=user.password2 ) }}
 
         <br />
 
         {{ form.submit( class="btn btn-secondary btn-sm") }}
 
         <a href="{{ url_for('member.delete', id=id) }}" class="btn btn-danger btn-sm">Delete</a>
-        
+
     </form>
 </div>
 

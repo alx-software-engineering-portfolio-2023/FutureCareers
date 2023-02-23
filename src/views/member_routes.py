@@ -3,7 +3,6 @@ from flask_login import login_required, current_user
 from forms.webforms import RegistrationForm
 from models.models import db, User
 
-
 member = Blueprint("member", __name__)
 
 
@@ -20,32 +19,35 @@ def profile(id):
     form = RegistrationForm()
     user_to_update = User.query.get_or_404(id)
     
-    if request.method == 'POST':
-        user_to_update.name = request.form['name']
-        user_to_update.surname = request.form['surname']
-        user_to_update.email= request.form['email']
-        user_to_update.password1 = '********'
-        user_to_update.password2 = '********'
-        
-        try:
-            db.session.commit()
-            flash("User Updated Succesfully")
+    if id == current_user.id:
+        if request.method == 'POST':
+            user_to_update.name = request.form['name']
+            user_to_update.surname = request.form['surname']
+            user_to_update.email= request.form['email']
             
-            return render_template('member/dashboard.html', form=form, user=user_to_update, id=id)
-        
-        except:
-            flash("Encountered an Error!...Try Again!")
+            try:
+                db.session.commit()
+                flash("User Updated Succesfully")
+                
+                return render_template('member/dashboard.html', form=form, user=user_to_update, id=id)
             
-            return render_template('member/profile.html', form=form, user=user_to_update, id=id)
-    
+            except:
+                flash("Encountered an Error!...Try Again!")
+                
+                return render_template('member/profile.html', form=form, user=user_to_update, id=id)
+        
+        else:
+            
+            return render_template("member/profile.html", form=form, user=user_to_update, id=id)
     else:
+        flash("Not your profile...")
+        return redirect(url_for('member.dashboard'))
         
-        return render_template("member/profile.html", form=form, user=user_to_update, id=id)
-
 
 @member.route('/delete/<int:id>')
 @login_required
 def delete(id):
+    
     if id == current_user.id:
         delete_user = User.query.get_or_404(id)
         form = RegistrationForm
