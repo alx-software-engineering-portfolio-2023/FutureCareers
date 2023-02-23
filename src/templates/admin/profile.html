@@ -6,7 +6,8 @@ content %}
 <h2>Your Profile</h2>
 
 <div class="shadow p-3 mb-5 bg-body rounded">
-    <form action="/profile/{{ user.id }}" method="POST">
+    <form action="/admin/profile/{{ user.id }}" method="POST">
+
         {{ form.hidden_tag() }} {{ form.name.label( class="form-label") }} {{
         form.name( class="form-control", value=user.name) }}
         <br />

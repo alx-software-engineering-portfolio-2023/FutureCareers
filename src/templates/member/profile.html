@@ -7,7 +7,7 @@
 <h2>Your Profile</h2>
 
 <div class="shadow p-3 mb-5 bg-body rounded">
-    <form action="/profile/{{ user.id }}" method="POST">
+    <form action="/member/profile/{{ user.id }}" method="POST">
         {{ form.hidden_tag() }} {{ form.name.label( class="form-label") }} {{
         form.name( class="form-control", value=user.name) }}
         <br />
@@ -26,7 +26,14 @@
 
         <br />
 
-        {{ form.submit( class="btn btn-secondary") }}
+        {{ form.submit( class="btn btn-secondary btn-sm") }}
+
+        <br/>
+        <br/>
+
+        Delete Profile
+
+        <a href="{{ url_for('member.delete', id=id) }}" class="btn btn-danger btn-sm">Delete</a>
     </form>
 </div>
 

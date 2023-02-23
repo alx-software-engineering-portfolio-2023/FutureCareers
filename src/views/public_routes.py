@@ -19,5 +19,3 @@ def search():
     results = Search_careerjunction('python')
     
     return render_template("search.html", results=results, user=current_user)  # , form=form
-
-

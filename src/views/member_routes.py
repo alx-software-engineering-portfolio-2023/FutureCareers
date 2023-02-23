@@ -24,14 +24,14 @@ def profile(id):
         user_to_update.name = request.form['name']
         user_to_update.surname = request.form['surname']
         user_to_update.email= request.form['email']
-        user_to_update.password1 = ''
-        user_to_update.password2 = ''
+        user_to_update.password1 = '********'
+        user_to_update.password2 = '********'
         
         try:
             db.session.commit()
             flash("User Updated Succesfully")
             
-            return render_template('member/profile.html', form=form, user=user_to_update, id=id)
+            return render_template('member/dashboard.html', form=form, user=user_to_update, id=id)
         
         except:
             flash("Encountered an Error!...Try Again!")
@@ -43,11 +43,27 @@ def profile(id):
         return render_template("member/profile.html", form=form, user=user_to_update, id=id)
 
 
-@member.route('/delete')
+@member.route('/delete/<int:id>')
 @login_required
 def delete(id):
+    if id == current_user.id:
+        delete_user = User.query.get_or_404(id)
+        form = RegistrationForm
 
-    return redirect(url_for('member.dashboard'))
+        try:
+            db.session.delete(delete_user)
+            db.session.commit()
+            
+            flash("User Deleted Succesfully!")
+            return redirect(url_for('auth.login'))
+
+        except:
+            flash("Whoops! Encountered a problem deleting the user")
+            return render_template('member/profile.html', form=form)
+        
+    else:
+        flash("Requires authorization!! You are not an Admin..")
+        return redirect(url_for('dashboard'))
 
 
 @member.route('/saved')
@@ -62,3 +78,4 @@ def saved():
 def deadlines():
 
     return render_template("member/deadlines.html", user=current_user)
+
