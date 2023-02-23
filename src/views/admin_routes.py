@@ -6,14 +6,13 @@ from forms.webforms import RegistrationForm
 
 admin = Blueprint("admin", __name__)
 
+
 @admin.route('/dashboard')
 @login_required
 def dashboard():
     our_users = User.query.all()
-    
+
     return render_template('admin/dashboard.html', user=current_user, our_users=our_users)
-    
-        
 
 
 @admin.route('/profile/<int:id>', methods=['GET', 'POST'])
