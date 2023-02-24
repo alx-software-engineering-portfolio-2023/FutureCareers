@@ -11,11 +11,13 @@
 <h3>Obtained these results...</h3>
 
 
-{% for result in results %}
-{% for entry in result %}
-{{ entry }}<br />
-{% endfor %}
-<br /><br /><br />
-{% endfor %}
+<div>
+    {% for result in results %}
+        <h4>{{ result.title }}</h4>
+        <p>Description placeholder</p>
+        <p>{{ result.closing_date }}</p>
+        <a href="{{ result.link }}"> apply </a>
+    {% endfor %}
+</div>
 
 {% endblock %}

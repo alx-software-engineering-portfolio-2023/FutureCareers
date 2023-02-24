@@ -4,6 +4,8 @@ from sendgrid.helpers.mail import (Mail, Attachment, FileContent, FileName, File
 import base64
 import os
 
+from __init__ import create_app
+from flask import render_template
 
 app = create_app()
 

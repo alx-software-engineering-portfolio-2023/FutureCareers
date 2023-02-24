@@ -6,7 +6,8 @@ content %}
 <h2>Your Profile</h2>
 
 <div class="shadow p-3 mb-5 bg-body rounded">
-    <form action="/profile/{{ user.id }}" method="POST">
+    <form action="/admin/profile/{{ user.id }}" method="POST">
+
         {{ form.hidden_tag() }} {{ form.name.label( class="form-label") }} {{
         form.name( class="form-control", value=user.name) }}
         <br />
@@ -15,16 +16,13 @@ content %}
         <br />
         {{ form.email.label( class="form-label" ) }} {{ form.email(
         class="form-control", value=user.email ) }}
-        <br />
-        {{ form.password1.label( class="form-label" ) }} {{ form.password1(
-        class="form-control", value=user.password ) }}
-        <br />
-        {{ form.password2.label( class="form-label" ) }} {{ form.password2(
-        class="form-control", value=user.password2 ) }}
 
         <br />
 
-        {{ form.submit( class="btn btn-secondary") }}
+        {{ form.submit( class="btn btn-secondary btn-sm") }}
+
+        <a href="{{ url_for('admin.delete', id=id) }}" class="btn btn-danger btn-sm">Delete</a>
+
     </form>
 </div>
 
