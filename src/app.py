@@ -20,29 +20,27 @@ def send_email_using_sendgrid():
     to_emails='futurecareersalx@gmail.com',
     subject='Your Jobs list',
     html_content='')
-    with open('results.csv', 'rb') as file:
-        data = file.read()
-        file.close()
-    encoded_file = base64.b64encode(data).decode()
+    # with open('results.csv', 'rb') as file:
+    #     data = file.read()
+    #     file.close()
+    # encoded_file = base64.b64encode(data).decode()
 
-    attachedFile = Attachment(
-        FileContent(encoded_file),
-        FileName('results.csv'),
-        FileType('text/csv'),
-        Disposition('attachment')
-    )
-    message.attachment = attachedFile
+    # attachedFile = Attachment(
+    #     FileContent(encoded_file),
+    #     FileName('results.csv'),
+    #     FileType('text/csv'),
+    #     Disposition('attachment')
+    # )
+    # message.attachment = attachedFile
     try:
-        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-        #sg = SendGridAPIClient('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')
+        #sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+        sg = SendGridAPIClient('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')
         response = sg.send(message)
         print(response.status_code)
         print(response.body)
         print(response.headers)
     except Exception as e:
         print(e.message)
-
-send_email_using_sendgrid()
 
 if __name__ == "__main__":
     app.run(debug=True)
