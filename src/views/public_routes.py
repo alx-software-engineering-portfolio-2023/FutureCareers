@@ -18,6 +18,6 @@ def search():
     #if form.validate_on_submit():
     results = Search_careerjunction('python')
     
-    return render_template("search.html", results=results, user=current_user)  # , form=form
+    return render_template("public/search.html", results=results, user=current_user)  # , form=form
 
 
