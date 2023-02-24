@@ -9,14 +9,14 @@
 </form>
 -->
 <h3>Obtained these results...</h3>
-
+<br />
 
 <div>
     {% for result in results %}
         <h4>{{ result.title }}</h4>
         <p>Description placeholder</p>
         <p>{{ result.closing_date }}</p>
-        <a href="{{ result.link }}"> apply </a>
+        <a href="{{ result.link }}" target="_blank"> apply </a><br />
     {% endfor %}
 </div>
 

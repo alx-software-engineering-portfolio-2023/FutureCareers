@@ -1,3 +1,8 @@
+"""
+If your using any other database other than sqlite3
+This script will create your databasep.
+"""
+
 import mysql.connector
 
 
