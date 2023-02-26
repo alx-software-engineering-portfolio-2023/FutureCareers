@@ -1,0 +1,122 @@
+/* Navbar Styles
+==================================================
+Custom Fonts
+==================================================
+font-family: 'Baskervville', serif;
+font-family: 'Caveat', cursive;
+font-family: 'Lobster', cursive;
+font-family: 'Marck Script', cursive;
+font-family: 'Markazi Text', serif;
+font-family: 'Pacifico', cursive;
+font-family: 'Patrick Hand', cursive;
+font-family: 'Roboto', sans-serif;
+font-family: 'Roboto Mono', monospace;
+font-family: 'Shantell Sans', cursive;
+font-family: 'Source Sans Pro', sans-serif;
+font-family: 'Ubuntu', sans-serif;
+font-family: 'Ubuntu Condensed', sans-serif;
+font-family: 'Ubuntu Mono', monospace;
+ */
+
+/*
+ ===================================================
+ Left Column
+ ===================================================
+ */
+.nav-wrapper {
+  margin: 0px 0px 0px 0px;
+  height: 50px;
+  background-color: transparent;
+  color: #264653;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* FlexBox Container */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 120px;
+}
+
+.nav-wrapper > .left-column {
+  display: flex;
+  align-items: left;
+}
+.nav-wrapper > .left-column > .logo {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: left;
+  font-size: 2em;
+  letter-spacing: -7px;
+}
+
+.nav-wrapper > .left-column > .logo a {
+  font-family: "Roboto Mono", monospace;
+  color: #ffecd1;
+  text-decoration: none;
+  transition: 0.5s;
+}
+.nav-wrapper > .left-column > .logo a:hover {
+  color: #264653;
+  letter-spacing: -2px;
+}
+
+/*
+==========================================
+Right Column
+===========================================
+*/
+.nav-wrapper > .right-column {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.links {
+  font-size: 0.8em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 300px;
+}
+
+.links > .nav-link {
+  width: 100px;
+  text-align: right;
+  margin-right: 50px;
+}
+
+.links > .nav-link a {
+  font-family: "Ubuntu Mono", sans-serif;
+  color: #264653;
+  text-decoration: none;
+  transition: 0.5s;
+  font-size: 1em;
+}
+
+.links > .nav-link a:hover {
+  color: #ffecd1;
+  letter-spacing: 2px;
+}
+
+.menu-btn {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 10px 10px;
+  border: 2px solid #15616d;
+  border-radius: 20px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 40px; */
+}
+.menu-btn2 {
+  background: transparent;
+  padding: 10px 10px;
+  border: 2px solid #15616d;
+  border-radius: 20px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

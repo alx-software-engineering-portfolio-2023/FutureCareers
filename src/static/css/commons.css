@@ -1,0 +1,31 @@
+/* Commons Style Sheet 
+===============================================================
+Custom Fonts
+===============================================================
+font-family: 'Baskervville', serif;
+font-family: 'Caveat', cursive;
+font-family: 'Lobster', cursive;
+font-family: 'Marck Script', cursive;
+font-family: 'Markazi Text', serif;
+font-family: 'Pacifico', cursive;
+font-family: 'Patrick Hand', cursive;
+font-family: 'Roboto', sans-serif;
+font-family: 'Roboto Mono', monospace;
+font-family: 'Shantell Sans', cursive;
+font-family: 'Source Sans Pro', sans-serif;
+font-family: 'Ubuntu', sans-serif;
+font-family: 'Ubuntu Condensed', sans-serif;
+font-family: 'Ubuntu Mono', monospace;
+ */
+
+body {
+  font-size: 1.5em;
+  font-family: "Ubuntu Mono", "Roboto Mono", sans-serif;
+  background-image: linear-gradient(rgba(0, 8, 51, 0.7), rgba(0, 8, 51, 0.2)),
+    url("../images/team_work_testing.jpg");
+  height: 700px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

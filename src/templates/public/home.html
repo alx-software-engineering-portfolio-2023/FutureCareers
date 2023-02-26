@@ -1,7 +1,105 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}FutureCareer-Home{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Career</title>
+    <!-- Icons -->
+    <script src="https://kit.fontawesome.com/0c2eb5f270.js" crossorigin="anonymous"></script>
 
-{% block content %}
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Baskervville&family=Caveat&family=Lobster&family=Marck+Script&family=Markazi+Text&family=Pacifico&family=Patrick+Hand&family=Roboto+Mono:wght@300&family=Roboto:wght@300&family=Shantell+Sans&family=Source+Sans+Pro:wght@300&family=Ubuntu&family=Ubuntu+Condensed&family=Ubuntu+Mono&display=swap"
+        rel="stylesheet">
 
-{% endblock %}
+    <!-- External Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/commons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
+</head>
+
+<body>
+    <div class="nav-wrapper">
+        <div class="left-column">
+            <div class="logo">
+                <a href="{{ url_for('public.home') }}">Future Career</a>
+            </div>
+        </div>
+        <div class="right-column">
+            <div class="links">
+                <div class="nav-link">
+                    <a class="menu-btn2" href="url_for(auth.login)" target="_blank">Sign In</a>
+                </div>
+                <div class="nav-link">
+                    <a class="menu-btn" href="{{ url_for('auth.register') }}" target="_blank">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-section">
+        <div class="title-heading">
+            <h1>Find Your Next Career Opportunity</h1>
+        </div>
+        <br>
+        <div class="title-motto">
+            <h6>A Job Opportunity Engaged with Today Could Be Your Future Tomorrow...</h6>
+        </div>
+    </div>
+
+    <div class="looking-career">
+        <div class="text-content">
+            <p class="heading">Looking For Employment?</p>
+            <br>
+            <p class="paragraph">Look No Further!! Simply just register <br>with us and
+                get access to thousands of<br>potential employers. Getting hired <br> has never
+                been made this easy!
+            </p><br>
+            <div class="call-actions">
+                <div class="action-btn">
+                    <a href="#">Sign Up</a>
+                </div>
+            </div>
+            <br><br>
+            <div class="scroll">
+                <p>Scroll below For More...</p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="title">
+            <p>Search For Your Career Field</p>
+        </div>
+        <div class="search">
+            <br>
+            <form action="https://www.google.com./search" method="get" class="searchbar">
+                <input type="text" placeholder="search" name="q">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+            <br>
+        </div>
+        <div class="about-us">
+            <p>About Us</p>
+            <br>
+        </div>
+        <div class="about-us-text">
+            <p><br><br>
+                We are all about encouraging people to push for their dreams and <br>
+                chase their career goals. With us You will receive reminders of<br>
+                job posts that are approaching their deadlines and you won't<br>
+                miss a single deadline. We have a large pool of job opportunities<br>
+                to search from and brought to you within your reach. Applying has<br>
+                never been made easy.<br><br>
+                Always remember:<br>
+                "A Job Opportunity Engaged with Today Could Be Your Future Tomorrow..."
+                <br><br>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

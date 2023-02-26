@@ -1,0 +1,185 @@
+/* Commons Style Sheet 
+===============================================================
+Custom Fonts
+===============================================================
+font-family: 'Baskervville', serif;
+font-family: 'Caveat', cursive;
+font-family: 'Lobster', cursive;
+font-family: 'Marck Script', cursive;
+font-family: 'Markazi Text', serif;
+font-family: 'Pacifico', cursive;
+font-family: 'Patrick Hand', cursive;
+font-family: 'Roboto', sans-serif;
+font-family: 'Roboto Mono', monospace;
+font-family: 'Shantell Sans', cursive;
+font-family: 'Source Sans Pro', sans-serif;
+font-family: 'Ubuntu', sans-serif;
+font-family: 'Ubuntu Condensed', sans-serif;
+font-family: 'Ubuntu Mono', monospace;
+ */
+.content-section {
+  text-align: center;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.content-section > .title-heading {
+  color: #ffffff;
+  font-family: "Lobster", cursive;
+  font-size: 3em;
+  font-weight: 700px;
+  letter-spacing: -1.5px;
+}
+
+.content-section > .title-motto {
+  color: #ffffff;
+  font-size: 1em;
+  font-family: "Baskervville", serif;
+  font-weight: 500px;
+  letter-spacing: -0.2px;
+  margin-top: 60px;
+}
+
+.looking-career {
+  margin-top: 90px;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+}
+
+.looking-career > .text-content > .heading {
+  font-size: 60px;
+  font-family: "Caveat", "Ubuntu Mono";
+  color: #ffffff;
+}
+
+.looking-career > .text-content .paragraph {
+  font-size: 30px;
+  font-family: "Markazi Text", "Ubuntu Mono";
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+.looking-career > .text-content > .call-actions > .action-btn {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.looking-career > .text-content > .call-actions > .action-btn {
+  text-align: center;
+  padding: 20px 20px;
+  border-radius: 30px;
+  width: 100px;
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  margin-left: 200px;
+}
+
+.looking-career > .text-content > .call-actions > .action-btn {
+  background-color: #b0d7ff;
+  color: #4e4ee1;
+  margin-right: 10px;
+  font-family: "Marck Script";
+  font-size: 1em;
+}
+.call-actions > .action-btn a {
+  font-family: "Ubuntu Mono", sans-serif;
+  color: #264653;
+  text-decoration: none;
+  transition: 0.5s;
+  font-size: 1em;
+}
+.call-actions > .action-btn a:hover {
+  color: #f05d23;
+  letter-spacing: 2px;
+}
+.scroll {
+  font-size: 1em;
+  font-family: "Pacifico", cursive;
+  color: #ffecd1;
+  margin-top: 130px;
+  margin-bottom: -90px;
+}
+
+/* Second Page */
+.container {
+  height: 900px;
+  padding: 5%;
+  background-image: linear-gradient(rgba(0, 8, 51, 0.5), rgba(0, 8, 51, 0.7)),
+    url("../images/dude_in_office.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 220px;
+  font-family: "Patrick Hand", sans-serif;
+}
+.container .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+  font-family: "Patrick Hand";
+  font-size: 50px;
+  color: #ffecd1;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 150px;
+}
+
+.searchbar {
+  width: 100%;
+  max-width: 700px;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  border-radius: 60px;
+  padding: 10px 20px;
+  backdrop-filter: blur(4px) saturate(180%);
+}
+
+.searchbar input {
+  background: transparent;
+  flex: 1;
+  border: 0;
+  outline: none;
+  padding: 24px 20px;
+  font-size: 20px;
+  color: #cac7ff;
+}
+
+::placeholder {
+  color: #cac7ff;
+}
+
+.searchbar button i {
+  width: 25px;
+  font-size: 2em;
+}
+.searchbar button {
+  border: 0;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  background: #58629b;
+  cursor: pointer;
+}
+
+.about-us {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 150px;
+  font-size: 30px;
+  color: #ffecd1;
+}
+.about-us-text {
+  text-align: center;
+  font-size: 0.9em;
+  color: #ffecd1;
+}
