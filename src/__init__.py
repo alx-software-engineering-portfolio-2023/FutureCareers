@@ -2,12 +2,42 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_apscheduler import APScheduler
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import (Mail)
+import os
 
+scheduler = APScheduler()
 
 # from database.create_db import create_database
 db = SQLAlchemy()
 DB_NAME = "future_career.db"
-scheduler = APScheduler()
+
+
+def SendEMail(email, content):
+    message = Mail(
+    from_email='futurecareersalx@gmail.com',
+    to_emails=email,
+    subject='Your Jobs list',
+    html_content=content)
+    try:
+        sg = SendGridAPIClient(os.getenv("FUTURECAREERS_API_KEY"))
+        response = sg.send(message)
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)
+    except Exception as e:
+        print(e.message)
+
+
+@scheduler.task('cron', id='send_notification', minute='59')
+def SendNotification():
+    from models.models import User, User
+    with scheduler.app.app_context():
+        users = User.query.all()
+        for user in users:
+            print(user.name)
+            SendEMail("futurecareersalx@gmail.com", "job list links")
+
 
 def create_app():
     app = Flask(__name__)
@@ -42,12 +72,11 @@ def create_app():
     login_manger.login_view = 'auth.login'
     login_manger.init_app(app)
 
+    scheduler.init_app(app)
+    scheduler.start()
+
     @login_manger.user_loader
     def load_user(id):
         return User.query.get(int(id))
-    
-
-    scheduler.init_app(app)
-    scheduler.start()
     
     return app
