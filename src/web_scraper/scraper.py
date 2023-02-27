@@ -17,13 +17,16 @@ def Search_careerjunction(search_term):
     soup = BeautifulSoup(page, 'lxml')
     #total_pages = soup.find('ul', id='pagination').findChildren()[-3].text
     #while page_number < int(2):
+    count = 0
     for job in soup.find_all('div', class_='module job-result'):
         items = {}
+        items["id"] = count
+        count += 1
         items["title"] = job.find_all('a')[1].text + " @ " + job.find('h3').text.strip()
         link = base_url + job.find_all('a')[1].get('href').strip()
         details_page = requests.get(link).text
         details_soup = BeautifulSoup(details_page, 'lxml')
-        #items["description"] = details_soup.find_all('div', class_="job-details")[1]
+        items["description"] = details_soup.find_all('div', class_="job-details")[1].get_text()
         digits = re.findall("[0-9]+", job.find_all('li', class_="expires")[0].text, flags=0)
         add_days = (int(digits[0]))
         items["closing_date"] = date.today() + timedelta(days=add_days)
