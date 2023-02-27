@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 from datetime import date, timedelta
 import re
+#from customThread import CustomThread
 
 
 def Search_careerjunction(search_term):
@@ -24,12 +25,8 @@ def Search_careerjunction(search_term):
         details_soup = BeautifulSoup(details_page, 'lxml')
         #items["description"] = details_soup.find_all('div', class_="job-details")[1]
         digits = re.findall("[0-9]+", job.find_all('li', class_="expires")[0].text, flags=0)
-        if digits != None:
-            #add_days = (digits[0])
-            add_days = 1
-        else:
-            add_days = 0
-        items["closing_date"] = date.today() + timedelta(int(add_days))
+        add_days = (int(digits[0]))
+        items["closing_date"] = date.today() + timedelta(days=add_days)
         items["link"] = link.strip()
         results.append(items)
 #page_number += 1
