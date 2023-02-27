@@ -8,16 +8,24 @@
     <button type="submit">Submit</button>
 </form>
 -->
-<h3>Obtained these results...</h3>
+<h3>Search results from career junction</h3>
 <br />
 
 <div>
     {% for result in results %}
+        <input type="hidden" id="{{ result.id }}">
         <h4>{{ result.title }}</h4>
-        <p>Description placeholder</p>
-        <p>{{ result.closing_date }}</p>
-        <a href="{{ result.link }}" target="_blank"> apply </a><br />
+        <p>{{result.description[0:99] }}...</p>
+        <p>Closing Date: {{ result.closing_date }}</p>
+        <a href="{{ result.link }}" target="_blank"> View original post </a>
+        <a onclick="SayHello()">Save to my list</a>
+        <br /><br /><br />
     {% endfor %}
 </div>
 
+<script type="text/javascript">function sayHello() {
+    alert("Hello World");
+  }</script>
+
 {% endblock %}
+
