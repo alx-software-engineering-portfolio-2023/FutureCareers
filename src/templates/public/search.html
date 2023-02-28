@@ -11,21 +11,61 @@
 <h3>Search results from career junction</h3>
 <br />
 
-<div>
-    {% for result in results %}
-        <input type="hidden" id="{{ result.id }}">
-        <h4>{{ result.title }}</h4>
-        <p>{{result.description[0:99] }}...</p>
-        <p>Closing Date: {{ result.closing_date }}</p>
-        <a href="{{ result.link }}" target="_blank"> View original post </a>
-        <a onclick="SayHello()">Save to my list</a>
-        <br /><br /><br />
-    {% endfor %}
-</div>
 
-<script type="text/javascript">function sayHello() {
-    alert("Hello World");
-  }</script>
+    {% for result in results %}
+    <div id="job_post-{{ result.id }}">
+        <h4 id="title-{{ result.id }}">{{ result.title }}</h4>
+        <p id="description-{{ result.id }}">{{result.description[0:99] }}...</p>
+        <p id="closing_date-{{ result.id }}">Closing Date: {{ result.closing_date }}</p>
+        <a href="{{ result.link }}" target="_blank" id="link-{{ result.id }}"> View post </a>
+        <span onclick="sayHello('{{ result.id }}')"><i id="bookmark-{{ result.id }}" class="fa-regular fa-bookmark"></i></span>
+        <br /><br /><br />
+    </div>
+    {% endfor %}
+
+
+<script type="text/javascript">
+    function sayHello(id) {
+        var title = document.getElementById("title-" + id).innerText
+        var description = document.getElementById("description-" + id).innerText
+        var closing_date = document.getElementById("closing_date-" + id).innerText
+        var link = document.getElementById("link-" + id).getAttribute("href")
+        var bookmark = document.getElementById("bookmark-"+ id)
+
+        var post = {
+            title: title,
+            description: description,
+            closing_date: closing_date,
+            link: link
+        }
+
+        fetch(`${window.origin}/member/save`, {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify(post),
+            cache: "no-cache",
+            headers: new Headers({
+                "content-type": "application/json"
+            })
+        })
+        .then(function(response) {
+
+            if (response.status !== 200)
+            {
+                console.log(response.status)
+                return;
+            }
+            
+            response.json().then(function (data) {
+                
+                bookmark.className = data["success"]
+            })
+        })
+
+        }
+  </script>
+
+
 
 {% endblock %}
 
