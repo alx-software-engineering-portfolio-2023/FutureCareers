@@ -1,7 +1,8 @@
-from flask import Blueprint, render_template, flash, redirect, url_for, request
+from flask import Blueprint, render_template, flash, redirect, url_for, request, jsonify, make_response
 from flask_login import login_required, current_user
 from forms.webforms import RegistrationForm
-from models.models import db, User
+from models.models import db, User, Saved
+from datetime import datetime
 
 member = Blueprint("member", __name__)
 
@@ -80,3 +81,24 @@ def saved():
 def deadlines():
 
     return render_template("member/deadlines.html", user=current_user)
+
+@member.route("/save", methods=["POST"])
+@login_required
+def save():
+    req = request.get_json()
+    
+    title = req["title"]
+    description = req["description"]
+    link = req["link"]
+    closing_date = req["closing_date"] + " 00:00:00"
+    closing_date = datetime.strptime(closing_date, '%Y-%m-%d %H:%M:%S')
+
+    job = Saved(job_title=title, description=description, link=link, applied_to=False, closing_date=closing_date, user_id=current_user.id)
+    db.session.add(job)
+    db.session.commit()
+
+    
+
+    res = make_response(jsonify({"success": "fa-solid fa-bookmark"}), 200)
+
+    return res
