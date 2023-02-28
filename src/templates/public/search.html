@@ -16,7 +16,7 @@
     <div id="job_post-{{ result.id }}">
         <h4 id="title-{{ result.id }}">{{ result.title }}</h4>
         <p id="description-{{ result.id }}">{{result.description[0:99] }}...</p>
-        <p id="closing_date-{{ result.id }}">Closing Date: {{ result.closing_date }}</p>
+        <span>Closing Date: </span><span id="closing_date-{{ result.id }}">{{ result.closing_date }}</span><br>
         <a href="{{ result.link }}" target="_blank" id="link-{{ result.id }}"> View post </a>
         <span onclick="sayHello('{{ result.id }}')"><i id="bookmark-{{ result.id }}" class="fa-regular fa-bookmark"></i></span>
         <br /><br /><br />
