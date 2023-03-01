@@ -2,11 +2,13 @@
 
 {% block content %}
 
+<link rel="stylesheet" href="../../static/css/dashboard.css">
+
 {% if id == current_user.id %}
 
 <h2>Your Profile</h2>
 
-<div class="shadow p-3 mb-5 bg-body rounded">
+<div class="container">
     <form action="/member/profile/{{ user.id }}" method="POST">
         {{ form.hidden_tag() }} {{ form.name.label( class="form-label") }} {{
         form.name( class="form-control", value=user.name) }}

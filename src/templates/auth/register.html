@@ -1,26 +1,35 @@
 {% extends "base.html" %} {% block title %} Register {% endblock %} {% block
-content %} 
-<h1>Register Account</h1>
+content %}
 
-<div class="shadow p-3 mb-5 bg-body rounded">
+<link rel="stylesheet" href="../../static/css/register.css">
+
+<div class="container">
+  <div class="header">
+    <h3>Register Account</h3>
+  </div>
   <form method="POST">
-    {{ form.hidden_tag() }} {{ form.name.label( class="form-label" ) }} {{
+    {{ form.hidden_tag() }}
+    <div class="names">
+      {{ form.name.label( class="form-label" ) }} {{
     form.name( class="form-control" ) }}
     <br />
-    {{ form.surname.label( class="form-label" ) }} {{ form.surname(
-    class="form-control" ) }}
+      {{ form.surname.label( class="form-label" ) }}
+      {{ form.surname(class="form-control" ) }}
+    </div>
     <br />
-    {{ form.email.label( class="form-label" ) }} {{ form.email(
-    class="form-control" ) }}
+    <div class="email">
+      {{ form.email.label( class="form-label" ) }}
+      {{ form.email(class="form-control" ) }}
+    </div>
     <br />
-    {{ form.password1.label( class="form-label" ) }} {{ form.password1(
-    class="form-control" ) }}
+    <div class="password">
+      {{ form.password1.label( class="form-label" ) }}
+      {{ form.password1(class="form-control" ) }}
     <br />
-    {{ form.password2.label( class="form-label" ) }} {{ form.password2(
-    class="form-control" ) }}
-
+      {{ form.password2.label( class="form-label" ) }}
+      {{ form.password2(class="form-control" ) }}
+    </div>
     <br />
-
     {{ form.submit( class="btn btn-secondary") }}
   </form>
 </div>

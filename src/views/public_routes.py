@@ -11,13 +11,22 @@ def home():
 
     return render_template('public/home.html', user=current_user)
 
-@public.route('/search', methods=['GET', 'POST'])
+
+@public.context_processor
+def base():
+    form = SearchForm()
+    return dict(form=form)
+
+
+@public.route('/search', methods=['POST'])
 def search():
-    #form = SearchForm()
+    form = SearchForm()
     
-    #if form.validate_on_submit():
-    results = Search_careerjunction('python')
-    
-    return render_template("public/search.html", results=results, user=current_user)  # , form=form
+    # if form.validate_on_submit():
+    results = Search_careerjunction("java")
+        # print(form.search.data)
+        
+    return render_template("public/search.html", user=current_user, form=form, results=results)
 
-
+    # else:
+    #     return render_template("public/search.html", user=current_user, form=form)
