@@ -30,7 +30,7 @@ def SendEMail(email, content):
         print(e.message)
 
 
-@scheduler.task('cron', id='send_notification', minute='21')
+@scheduler.task('cron', id='send_notification', minute='59')
 def SendNotification():
     from models.models import User, Saved
     with scheduler.app.app_context():
