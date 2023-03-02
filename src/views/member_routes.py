@@ -74,7 +74,7 @@ def delete(id):
 @login_required
 def saved():
     form = SearchForm()
-    saved_jobs = Saved.query.order_by(Saved.closing_date)
+    saved_jobs = Saved.query.order_by(Saved.id)
     
     return render_template("member/saved.html", user=current_user, form=form, saved_jobs=saved_jobs)
 
