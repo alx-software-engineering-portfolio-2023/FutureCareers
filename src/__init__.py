@@ -29,14 +29,22 @@ def SendEMail(email, content):
         print(e.message)
 
 
-@scheduler.task('cron', id='send_notification', minute='59')
+@scheduler.task('cron', id='send_notification', minute='19')
 def SendNotification():
-    from models.models import User, User
+    from models.models import User, Saved
     with scheduler.app.app_context():
-        users = User.query.all()
-        for user in users:
-            print(user.name)
-            SendEMail("futurecareersalx@gmail.com", "job list links")
+        mail_list = {}
+        jobs = Saved.query.all()#.filter_by() date 1 day before closing
+        for job in jobs:
+            if job.user_id not in mail_list.keys():
+                mail_list[job.user_id] = [f'<a href="{job.link}">{job.job_title}</a>']
+            else:
+                temp = mail_list[job.user_id]
+                temp.append(f'<a href="{job.link}">{job.job_title}</a>')
+                #mail_list[job.user_id] = temp
+        for key, value in mail_list.items():
+            email = User.query.filter_by(id=key).first().email
+            SendEMail(email, "\n".join(value))
 
 
 def create_app():

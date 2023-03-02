@@ -97,8 +97,6 @@ def save():
     db.session.add(job)
     db.session.commit()
 
-    
-
     res = make_response(jsonify({"success": "fa-solid fa-bookmark"}), 200)
 
     return res
