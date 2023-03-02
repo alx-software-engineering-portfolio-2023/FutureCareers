@@ -33,7 +33,7 @@
         <div class="right-column">
             <div class="links">
                 <div class="nav-link">
-                    <a class="menu-btn2" href="url_for(auth.login)" target="_blank">Sign In</a>
+                    <a class="menu-btn2" href="{{ url_for('auth.login') }}" target="_blank">Sign In</a>
                 </div>
                 <div class="nav-link">
                     <a class="menu-btn" href="{{ url_for('auth.register') }}" target="_blank">Sign Up</a>
@@ -76,7 +76,8 @@
         </div>
         <div class="search">
             <br>
-            <form action="https://www.google.com./search" method="get" class="searchbar">
+            <form action="{{ url_for('public.search') }}" method="POST" class="searchbar">
+                {{ form.hidden_tag() }}
                 <input type="text" placeholder="search" name="q">
                 <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
@@ -98,6 +99,9 @@
                 "A Job Opportunity Engaged with Today Could Be Your Future Tomorrow..."
                 <br><br>
             </p>
+        </div>
+        <div class="copyright">
+            &copy; 2023 Future Career &#124; All rights reserved. <br>This content is Licensed.
         </div>
     </div>
 </body>

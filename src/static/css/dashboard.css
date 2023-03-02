@@ -1,0 +1,22 @@
+body {
+    background: url('../images/pexels-ann-poan-5797908.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(4px) saturate(180%)
+}
+
+h2 {
+    color: #0081A7;
+
+}
+
+.card {
+    background: transparent;
+    color: #0081A7;
+}
+
+.container {
+    background: transparent;
+}

@@ -1,0 +1,16 @@
+body {
+    background: url('../images/pexels-elvis-2528118.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(4px) saturate(180%)
+}
+
+.card {
+    background: transparent;
+    color: #312F2F;
+    font-weight: 600px;
+    font-size: 1em;
+}
+

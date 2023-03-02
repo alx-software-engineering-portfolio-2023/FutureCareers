@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user
 from __init__ import db
 from models.models import User
-from forms.webforms import RegistrationForm
+from forms.webforms import RegistrationForm, SearchForm
 
 admin = Blueprint("admin", __name__)
 
@@ -10,9 +10,10 @@ admin = Blueprint("admin", __name__)
 @admin.route('/dashboard')
 @login_required
 def dashboard():
+    form = SearchForm()
     our_users = User.query.all()
 
-    return render_template('admin/dashboard.html', user=current_user, our_users=our_users)
+    return render_template('admin/dashboard.html', user=current_user, our_users=our_users, form=form)
 
 
 @admin.route('/profile/<int:id>', methods=['GET', 'POST'])
@@ -68,5 +69,6 @@ def delete(id):
 @admin.route('/stats')
 @login_required
 def statistics():
-
-    return render_template("admin/statistics.html", user=current_user)
+    form = SearchForm()
+    
+    return render_template("admin/statistics.html", user=current_user, form=form)
