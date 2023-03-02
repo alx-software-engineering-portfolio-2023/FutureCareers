@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user
-from __init__ import db
-from models.models import User
-from forms.webforms import RegistrationForm, SearchForm
+from src.__init__ import db
+from src.models.models import User
+from src.forms.webforms import RegistrationForm, SearchForm
 
 admin = Blueprint("admin", __name__)
 

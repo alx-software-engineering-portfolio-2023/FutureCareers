@@ -32,7 +32,7 @@ def SendEMail(email, content):
 
 @scheduler.task('cron', id='send_notification', minute='59')
 def SendNotification():
-    from models.models import User, Saved
+    from src.models.models import User, Saved
     with scheduler.app.app_context():
         mail_list = {}
         closing_tomorrow = date.today() + timedelta(days=1)
@@ -58,22 +58,20 @@ def create_app():
     
     # To use MySQL Database
     app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+mysqldb://{os.getenv("AZURE_MYSQL_USER")}:{os.getenv("AZURE_MYSQL_PASSWORD")}@{os.getenv("AZURE_MYSQL_HOST")}/{os.getenv("AZURE_MYSQL_NAME")}'
-    # app.config[
-        # 'SQLALCHEMY_DATABASE_URI'] = f'mysql+mysqldb://root:Legend1240s26#@localhost/{DB_NAME}'
     #app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
     
-    from views.admin_routes import admin
-    from views.auth_routes import auth
-    from views.member_routes import member
-    from views.public_routes import public
+    from src.views.admin_routes import admin
+    from src.views.auth_routes import auth
+    from src.views.member_routes import member
+    from src.views.public_routes import public
     
     app.register_blueprint(admin, url_prefix='/admin')
     app.register_blueprint(auth, url_prefix='/auth')
     app.register_blueprint(member, url_prefix='/member')
     app.register_blueprint(public, url_prefix='/')
     
-    from models.models import User, Saved
+    from src.models.models import User, Saved
     
     with app.app_context():
         db.create_all()
