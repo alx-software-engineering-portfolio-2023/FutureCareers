@@ -57,7 +57,7 @@ def create_app():
     # Create_database(DB_NAME)
     
     # To use MySQL Database
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+mysqldb://{os.getenv("DBUSER")}:{os.getenv("DBPASS")}@{os.getenv("DBHOST")}/{os.getenv("DBNAME")}'
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+mysqldb://{os.getenv("AZURE_MYSQL_USER")}:{os.getenv("AZURE_MYSQL_PASSWORD")}@{os.getenv("AZURE_MYSQL_HOST")}/{os.getenv("AZURE_MYSQL_NAME")}'
     # app.config[
         # 'SQLALCHEMY_DATABASE_URI'] = f'mysql+mysqldb://root:Legend1240s26#@localhost/{DB_NAME}'
     #app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
