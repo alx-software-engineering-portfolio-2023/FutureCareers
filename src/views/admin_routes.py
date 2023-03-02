@@ -66,9 +66,9 @@ def delete(id):
         return redirect(url_for('admin.dashboard'))
 
 
-@admin.route('/stats')
-@login_required
-def statistics():
-    form = SearchForm()
+# @admin.route('/stats')
+# @login_required
+# def statistics():
+#     form = SearchForm()
     
-    return render_template("admin/statistics.html", user=current_user, form=form)
+#     return render_template("admin/statistics.html", user=current_user, form=form)
