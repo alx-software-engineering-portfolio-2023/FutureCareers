@@ -5,6 +5,7 @@ from flask_apscheduler import APScheduler
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import (Mail)
 import os
+from datetime import date, timedelta 
 
 scheduler = APScheduler()
 
@@ -17,8 +18,8 @@ def SendEMail(email, content):
     message = Mail(
     from_email='futurecareersalx@gmail.com',
     to_emails=email,
-    subject='Your Jobs list',
-    html_content=content)
+    subject="Don't forget to apply",
+    html_content='<strong>These jobs close tomorrow</strong><br>' + content)
     try:
         sg = SendGridAPIClient(os.getenv("FUTURECAREERS_API_KEY"))
         response = sg.send(message)
@@ -29,14 +30,23 @@ def SendEMail(email, content):
         print(e.message)
 
 
-@scheduler.task('cron', id='send_notification', minute='59')
+@scheduler.task('cron', id='send_notification', minute='21')
 def SendNotification():
-    from models.models import User, User
+    from models.models import User, Saved
     with scheduler.app.app_context():
-        users = User.query.all()
-        for user in users:
-            print(user.name)
-            SendEMail("futurecareersalx@gmail.com", "job list links")
+        mail_list = {}
+        closing_tomorrow = date.today() + timedelta(days=1)
+        jobs = Saved.query.filter_by(closing_date=closing_tomorrow)
+        for job in jobs:
+            if job.user_id not in mail_list.keys():
+                mail_list[job.user_id] = [f'<a href="{job.link}">{job.job_title}</a>']
+            else:
+                temp = mail_list[job.user_id]
+                temp.append(f'<a href="{job.link}">{job.job_title}</a>')
+                #mail_list[job.user_id] = temp
+        for key, value in mail_list.items():
+            email = User.query.filter_by(id=key).first().email
+            SendEMail(email, "\n".join(value))
 
 
 def create_app():
@@ -47,10 +57,10 @@ def create_app():
     # Create_database(DB_NAME)
     
     # To use MySQL Database
-    # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqldb://username:password@localhost/db_name'
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+mysqldb://{os.getenv("DBUSER")}:{os.getenv("DBPASS")}@{os.getenv("DBHOST")}/{os.getenv("DBNAME")}'
     # app.config[
         # 'SQLALCHEMY_DATABASE_URI'] = f'mysql+mysqldb://root:Legend1240s26#@localhost/{DB_NAME}'
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    #app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
     
     from views.admin_routes import admin

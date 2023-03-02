@@ -28,7 +28,10 @@ def Search_careerjunction(search_term):
         details_soup = BeautifulSoup(details_page, 'lxml')
         items["description"] = details_soup.find_all('div', class_="job-details")[1].get_text()
         digits = re.findall("[0-9]+", job.find_all('li', class_="expires")[0].text, flags=0)
-        add_days = (int(digits[0]))
+        if len(digits) == 1:
+            add_days = (int(digits[0]))
+        else:
+            add_days = 0
         items["closing_date"] = date.today() + timedelta(days=add_days)
         items["link"] = link.strip()
         results.append(items)
