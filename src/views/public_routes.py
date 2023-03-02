@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, request
 from flask_login import login_required, current_user
-from forms.webforms import SearchForm
-from web_scraper.scraper import Search_careerjunction
+from src.forms.webforms import SearchForm
+from src.web_scraper.scraper import Search_careerjunction
 
 public = Blueprint("public", __name__)
 

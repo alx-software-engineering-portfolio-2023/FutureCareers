@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request, jsonify, make_response
 from flask_login import login_required, current_user
-from forms.webforms import RegistrationForm, SearchForm
-from models.models import db, User, Saved
+from src.forms.webforms import RegistrationForm, SearchForm
+from src.models.models import db, User, Saved
 from datetime import datetime
 
 member = Blueprint("member", __name__)
