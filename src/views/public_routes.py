@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for
+from flask import Blueprint, render_template, redirect, url_for, request
 from flask_login import login_required, current_user
 from forms.webforms import SearchForm
 from web_scraper.scraper import Search_careerjunction
@@ -22,9 +22,7 @@ def base():
 def search():
     form = SearchForm()
     
-    # if form.validate_on_submit():
-    results = Search_careerjunction("java")
-        # print(form.search.data)
+    results = Search_careerjunction(request.form.get("search"))
         
     return render_template("public/search.html", user=current_user, form=form, results=results)
 
