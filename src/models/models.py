@@ -20,8 +20,8 @@ class Saved(db.Model, UserMixin):
 
     id = db.Column(db.Integer(), primary_key=True)
     job_title = db.Column(db.String(500))
-    description = db.Column(db.String())
-    link = db.Column(db.String())
+    description = db.Column(db.String(1000))
+    link = db.Column(db.String(1000))
     applied_to = db.Column(db.Boolean())
     closing_date = db.Column(db.Date())
 
